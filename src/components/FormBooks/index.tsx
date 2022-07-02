@@ -1,4 +1,6 @@
 import React from 'react'
+import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { IForm } from '../../@types/IFrom'
 import { selectPropItem } from '../../@types/SelectProps'
 import InputBooks from '../InputBooks'
 import SelectBooks from '../SelectBooks'
@@ -18,12 +20,28 @@ const sort: selectPropItem[] = [
 ]
 
 const FormBooks = () => {
+  // const { control, handleSubmit } = useForm<IForm>()
+  const form = useForm<IForm>({
+    defaultValues: {
+      categories: 'all',
+      sortBy: 'relevance',
+    },
+  })
+  const { handleSubmit } = form
+  const onSubmit = () => {
+    handleSubmit((data) => {
+      console.log(data)
+    })()
+  }
+
   return (
-    <div>
-      <InputBooks />
-      <SelectBooks selectItems={categories} />
-      <SelectBooks selectItems={sort} />
-    </div>
+    <FormProvider {...form}>
+      <form>
+        <SelectBooks selectItems={categories} name='categories' />
+        <SelectBooks selectItems={sort} name='sortBy' />
+        <InputBooks onSubmit={onSubmit} name='q' />
+      </form>
+    </FormProvider>
   )
 }
 
