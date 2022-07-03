@@ -71,6 +71,11 @@ export interface RootObject {
   saleInfo: SaleInfo
   accessInfo: AccessInfo
 }
+export interface fetchBooksIterface {
+  kind: string
+  totalItems: number
+  items: RootObject[]
+}
 export enum Status {
   LOADING = 'Loading',
   SUCCESS = 'Success',

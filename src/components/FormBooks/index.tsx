@@ -1,7 +1,10 @@
+import { Box } from '@mui/material'
 import React from 'react'
-import { Controller, FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { IForm } from '../../@types/IFrom'
 import { selectPropItem } from '../../@types/SelectProps'
+import { fetchBooks } from '../../redux/books/asyncActions'
 import InputBooks from '../InputBooks'
 import SelectBooks from '../SelectBooks'
 
@@ -19,27 +22,41 @@ const sort: selectPropItem[] = [
   { value: 'newest', label: 'newest' },
 ]
 
+const formStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  alignContent: 'center',
+  flexDirection: 'column',
+}
+
 const FormBooks = () => {
-  // const { control, handleSubmit } = useForm<IForm>()
+  const dispatch = useDispatch()
   const form = useForm<IForm>({
     defaultValues: {
       categories: 'all',
       sortBy: 'relevance',
+      q: '',
     },
   })
   const { handleSubmit } = form
   const onSubmit = () => {
     handleSubmit((data) => {
-      console.log(data)
+      //@ts-ignore
+      dispatch(fetchBooks(data))
     })()
   }
 
   return (
     <FormProvider {...form}>
       <form>
-        <SelectBooks selectItems={categories} name='categories' />
-        <SelectBooks selectItems={sort} name='sortBy' />
-        <InputBooks onSubmit={onSubmit} name='q' />
+        <Box sx={formStyle}>
+          <InputBooks onSubmit={onSubmit} name='q' />
+          <Box>
+            <SelectBooks selectItems={categories} name='categories' />
+            <SelectBooks selectItems={sort} name='sortBy' />
+          </Box>
+        </Box>
       </form>
     </FormProvider>
   )

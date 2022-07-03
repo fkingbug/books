@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchBooks } from './asyncActions'
-import { Status } from './types'
+import { Status, RootObject } from './types'
 
-const initialState = {
-  books: [],
+export interface StateBook {
+  booksItems: RootObject[]
+  status: string
+}
+
+const initialState: StateBook = {
+  booksItems: [],
   status: Status.LOADING,
 }
 
@@ -17,6 +22,7 @@ const booksSlice = createSlice({
     })
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       state.status = Status.SUCCESS
+      state.booksItems = action.payload.items
     })
     builder.addCase(fetchBooks.rejected, (state) => {
       state.status = Status.ERROR

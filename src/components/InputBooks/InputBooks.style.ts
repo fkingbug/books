@@ -1,6 +1,7 @@
 import { styled, TextField } from '@mui/material'
 
 export const SearchInput = styled(TextField)({
+  width: '50%',
   '& label.Mui-focused': {
     color: 'green',
   },

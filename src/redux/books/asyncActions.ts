@@ -1,14 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { RootObject } from './types'
+import { IForm } from '../../@types/IFrom'
+import { fetchBooksIterface, RootObject } from './types'
 
-export const fetchBooks = createAsyncThunk<RootObject[], any>(
+export const fetchBooks = createAsyncThunk<fetchBooksIterface, IForm>(
   'pizza/fetchPizzasStatus',
-  async (params) => {
-    const { order, sortBy, category, search, currentPage } = params
-    const { data } = await axios.get<RootObject[]>(
-      `https://613e3b5094dbd600172abb2c.mockapi.io/pizzas?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
+  async ({ categories, q, sortBy }) => {
+    const categoriesNew = categories !== 'all' ? categories : ''
+    const { data } = await axios.get<fetchBooksIterface>(
+      `https://www.googleapis.com/books/v1/volumes?q=${q}+subject:${categoriesNew}&orderBy=${sortBy}&key=AIzaSyA-49MrBRLDGQVaZCRyppObhHcVEhPdq_A`
     )
     return data
   }
 )
+
+//https://www.googleapis.com/books/v1/volumes?q=+inauthor:keyes&key=AIzaSyA-49MrBRLDGQVaZCRyppObhHcVEhPdq_A
+//https://www.googleapis.com/books/v1/volumes?q=+subject&orderBy=relevance&key=AIzaSyA-49MrBRLDGQVaZCRyppObhHcVEhPdq_A
+// const x = `https://www.googleapis.com/books/v1/volumes?q=${q}+subject:${categoriesNew}&orderBy=${sortBy}&key=AIzaSyA-49MrBRLDGQVaZCRyppObhHcVEhPdq_A`
+// `https://www.googleapis.com/books/v1/volumes?${search}${categoriesNew}&orderBy=${sortBy}&key=AIzaSyA-49MrBRLDGQVaZCRyppObhHcVEhPdq_A`
