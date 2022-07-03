@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { IForm } from '../../@types/IFrom'
-import { fetchBooksIterface, RootObject } from './types'
+import { RootObject } from './types'
 
-export const fetchBooks = createAsyncThunk<fetchBooksIterface, IForm>(
+export const fetchBooks = createAsyncThunk<RootObject, IForm>(
   'pizza/fetchPizzasStatus',
   async ({ categories, q, sortBy }) => {
     const categoriesNew = categories !== 'all' ? categories : ''
-    const { data } = await axios.get<fetchBooksIterface>(
+    const { data } = await axios.get<RootObject>(
       `https://www.googleapis.com/books/v1/volumes?q=${q}+subject:${categoriesNew}&orderBy=${sortBy}&key=AIzaSyA-49MrBRLDGQVaZCRyppObhHcVEhPdq_A`
     )
     return data

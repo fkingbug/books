@@ -1,8 +1,7 @@
-import React, { ChangeEvent, FC, useState } from 'react'
-import { InputAdornment, styled, TextField } from '@mui/material'
+import React, { FC } from 'react'
+import { InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
-import { SearchInput } from './InputBooks.style'
-import { Control, useController, useFormContext } from 'react-hook-form'
+import { useController } from 'react-hook-form'
 import { IForm } from '../../@types/IFrom'
 
 interface InputBooksProps {
@@ -17,12 +16,12 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
     name,
     defaultValue: '',
   })
-
   return (
-    <SearchInput
+    <TextField
       placeholder='Поиск книг'
       value={value}
       onChange={onChange}
+      fullWidth
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>
@@ -30,9 +29,8 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
           </InputAdornment>
         ),
       }}
-      variant='outlined'
     />
   )
 }
-
 export default InputBooks
+// endAdornment :  <InputAdornment position='end'> <SearchIcon onClick={onSubmit} />  </InputAdornment>

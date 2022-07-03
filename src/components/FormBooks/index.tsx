@@ -28,6 +28,14 @@ const formStyle = {
   alignItems: 'center',
   alignContent: 'center',
   flexDirection: 'column',
+  maxWidth: '700px',
+  margin: '15px auto 50px',
+}
+
+const styleSelect = {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
 }
 
 const FormBooks = () => {
@@ -52,7 +60,7 @@ const FormBooks = () => {
       <form>
         <Box sx={formStyle}>
           <InputBooks onSubmit={onSubmit} name='q' />
-          <Box>
+          <Box sx={styleSelect}>
             <SelectBooks selectItems={categories} name='categories' />
             <SelectBooks selectItems={sort} name='sortBy' />
           </Box>

@@ -2,10 +2,12 @@ export interface IndustryIdentifier {
   type: string
   identifier: string
 }
+
 export interface ReadingModes {
   text: boolean
   image: boolean
 }
+
 export interface PanelizationSummary {
   containsEpubBubbles: boolean
   containsImageBubbles: boolean
@@ -19,11 +21,14 @@ export interface ImageLinks {
 export interface VolumeInfo {
   title: string
   authors: string[]
+  publisher: string
   publishedDate: string
+  description: string
   industryIdentifiers: IndustryIdentifier[]
   readingModes: ReadingModes
   pageCount: number
   printType: string
+  categories: string[]
   maturityRating: string
   allowAnonLogging: boolean
   contentVersion: string
@@ -33,20 +38,27 @@ export interface VolumeInfo {
   previewLink: string
   infoLink: string
   canonicalVolumeLink: string
+  subtitle: string
+  averageRating?: number
+  ratingsCount?: number
 }
 
 export interface SaleInfo {
   country: string
   saleability: string
   isEbook: boolean
+  buyLink: string
 }
 
 export interface Epub {
   isAvailable: boolean
+  downloadLink: string
 }
 
 export interface Pdf {
   isAvailable: boolean
+  acsTokenLink: string
+  downloadLink: string
 }
 
 export interface AccessInfo {
@@ -62,7 +74,7 @@ export interface AccessInfo {
   quoteSharingAllowed: boolean
 }
 
-export interface RootObject {
+export interface Item {
   kind: string
   id: string
   etag: string
@@ -71,10 +83,11 @@ export interface RootObject {
   saleInfo: SaleInfo
   accessInfo: AccessInfo
 }
-export interface fetchBooksIterface {
+
+export interface RootObject {
   kind: string
   totalItems: number
-  items: RootObject[]
+  items: Item[]
 }
 export enum Status {
   LOADING = 'Loading',
