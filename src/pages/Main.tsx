@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Container, Grid } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import FormBooks from '../components/FormBooks'
@@ -22,14 +22,16 @@ const Main = () => {
   return (
     <div className='qwe'>
       <FormBooks />
-      <Grid container spacing={2}>
-        {booksItems &&
-          booksItems.map((bookItem) => (
-            <Grid item md={4}>
-              <BookItem {...bookItem} />
-            </Grid>
-          ))}
-      </Grid>
+      <Container maxWidth='xl'>
+        <Grid container spacing={3}>
+          {booksItems &&
+            booksItems.map((bookItem) => (
+              <Grid item md={4}>
+                <BookItem {...bookItem} />
+              </Grid>
+            ))}
+        </Grid>
+      </Container>
     </div>
   )
 }

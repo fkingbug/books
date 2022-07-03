@@ -9,13 +9,11 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-      <Container maxWidth='xl'>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/:id' element={<Book />} />
-        </Routes>
-      </Container>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/:id' element={<Book />} />
+      </Routes>
     </>
   )
 }

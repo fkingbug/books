@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
@@ -28,7 +28,6 @@ const formStyle = {
   alignItems: 'center',
   alignContent: 'center',
   flexDirection: 'column',
-  maxWidth: '700px',
   margin: '15px auto 50px',
 }
 
@@ -57,15 +56,15 @@ const FormBooks = () => {
 
   return (
     <FormProvider {...form}>
-      <form>
-        <Box sx={formStyle}>
+      <Container maxWidth='xl' sx={formStyle}>
+        <form style={{ maxWidth: '700px' }}>
           <InputBooks onSubmit={onSubmit} name='q' />
           <Box sx={styleSelect}>
             <SelectBooks selectItems={categories} name='categories' />
             <SelectBooks selectItems={sort} name='sortBy' />
           </Box>
-        </Box>
-      </form>
+        </form>
+      </Container>
     </FormProvider>
   )
 }
