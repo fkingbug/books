@@ -4,18 +4,15 @@ import { Link } from 'react-router-dom'
 import FormBooks from './FormBooks'
 
 const styleLogo = {
-  fontSize: '50px',
+  fontSize: '2.1rem',
   color: 'black',
   fontWeight: '800',
   textDecoration: 'none',
-  '@media(max-width: 440px)': {
-    fontSize: '35px',
-  },
 }
 const styleHeader = {
   display: 'flex',
   justifyContent: 'center',
-  padding: '10px 0',
+  padding: '10px 0 0 ',
 }
 
 const Header = () => {

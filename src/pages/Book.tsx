@@ -25,11 +25,8 @@ const styleCategoryes = {
   marginTop: ' 10px',
 }
 const styleImg = {
-  width: '350px',
-  marginRight: '100px',
-  '@media(max-width: 900px)': {
-    marginRight: '0px',
-  },
+  width: '328px',
+  height: '400px',
 }
 const Book = () => {
   const [bookItem, setBookItem] = useState<RootObjectBookItem | null>()
@@ -56,11 +53,11 @@ const Book = () => {
         {bookItem && (
           <Box sx={styleBookItem}>
             <img style={styleImg} src={bookItem?.volumeInfo?.imageLinks?.thumbnail} />
+            <Typography variant='h4'>{bookItem?.volumeInfo?.title}</Typography>
+            <Typography sx={styleAuthor} variant='h5'>
+              {bookItem.volumeInfo.authors}
+            </Typography>
             <Box sx={styleBookInfo}>
-              <Typography variant='h4'>{bookItem?.volumeInfo?.title}</Typography>
-              <Typography sx={styleAuthor} variant='h5'>
-                {bookItem.volumeInfo.authors}
-              </Typography>
               <Typography variant='body1'>{bookItem?.volumeInfo?.description}</Typography>
               <Typography sx={styleCategoryes} variant='body1'>
                 {bookItem?.volumeInfo?.categories}
