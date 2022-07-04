@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { InputAdornment, TextField } from '@mui/material'
+import React, { FC, KeyboardEvent } from 'react'
+import { IconButton, InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useController } from 'react-hook-form'
 import { IForm } from '../../@types/IFrom'
@@ -16,6 +16,11 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
     name,
     defaultValue: '',
   })
+  const handleClickEnter = (event: any) => {
+    if (event.key === 'Enter') {
+      onSubmit()
+    }
+  }
   return (
     <TextField
       placeholder='Поиск книг'
@@ -25,7 +30,9 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>
-            <SearchIcon onClick={onSubmit} />
+            <IconButton onClick={onSubmit} onKeyPress={handleClickEnter}>
+              <SearchIcon />
+            </IconButton>
           </InputAdornment>
         ),
       }}

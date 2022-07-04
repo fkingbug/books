@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { IForm } from '../../@types/IFrom'
 import { selectPropItem } from '../../@types/SelectProps'
 import { fetchBooks } from '../../redux/books/asyncActions'
+import { switchFormData } from '../../redux/books/slice'
 import InputBooks from '../InputBooks'
 import SelectBooks from '../SelectBooks'
 
@@ -49,6 +50,7 @@ const FormBooks = () => {
   const { handleSubmit } = form
   const onSubmit = () => {
     handleSubmit((data) => {
+      dispatch(switchFormData(data))
       //@ts-ignore
       dispatch(fetchBooks(data))
     })()

@@ -7,14 +7,14 @@ import Main from './pages/Main'
 
 const App = () => {
   return (
-    <>
+    <div>
       <CssBaseline />
       <Header />
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/:id' element={<Book />} />
       </Routes>
-    </>
+    </div>
   )
 }
 
