@@ -8,6 +8,9 @@ const styleLogo = {
   color: 'black',
   fontWeight: '800',
   textDecoration: 'none',
+  '@media(max-width: 440px)': {
+    fontSize: '35px',
+  },
 }
 const styleHeader = {
   display: 'flex',

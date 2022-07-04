@@ -23,10 +23,15 @@ const styleAuthor = {
   color: 'grey',
   marginTop: '15px',
 }
+const styleLink = {
+  display: 'flex',
+  textDecoration: 'none',
+  justifyContent: 'center',
+}
 const BookItem: FC<Item> = (bookItem) => {
   return (
-    <Link style={{ textDecoration: 'none' }} to={`/${bookItem.id}`}>
-      <Card sx={{ maxWidth: 345 }}>
+    <Link style={styleLink} to={`/${bookItem.id}`}>
+      <Card sx={{ maxWidth: 320 }}>
         <CardMedia
           component='img'
           height='400'

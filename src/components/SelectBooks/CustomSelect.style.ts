@@ -10,7 +10,7 @@ export const StyledButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
-  min-width: 320px;
+  width: 300px;
   font-size : 18px;
   border: 1px solid #808080;
   border-radius: 4px;
@@ -20,8 +20,10 @@ export const StyledButton = styled('button')(
   line-height: 1.5;
   color: #1A2027;
   cursor : pointer;
- 
 
+  @media (max-width:680px) {
+    width : 100%;
+  }
   &.${selectUnstyledClasses.focusVisible} {
     outline: 3px solid 	#993300;
   }
@@ -40,19 +42,22 @@ export const StyledButton = styled('button')(
 )
 
 export const StyledListbox = styled('ul')(
-  ({ theme }) => `
+  () => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
   padding: 5px;
   margin: 10px 0;
-  min-width: 320px;
+  width: 300px;
   border: 1px solid #1A2027;
   background : white;
   border-radius: 4px;
   color: #1A2027;
   overflow: auto;
   outline: 0px;
+  @media (max-width:680px) {
+    width : 100%;
+  }
   `
 )
 

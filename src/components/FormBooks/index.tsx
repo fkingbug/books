@@ -36,6 +36,17 @@ const styleSelect = {
   width: '100%',
   display: 'flex',
   justifyContent: 'space-between',
+  '@media(max-width: 680px)': {
+    flexDirection: 'column',
+  },
+}
+
+const styleForm = {
+  maxWidth: '700px',
+  width: '100%',
+  '@media(max-width: 670px)': {
+    width: '100%',
+  },
 }
 
 const FormBooks = () => {
@@ -59,7 +70,7 @@ const FormBooks = () => {
   return (
     <FormProvider {...form}>
       <Container maxWidth='xl' sx={formStyle}>
-        <form style={{ maxWidth: '700px' }}>
+        <form style={styleForm}>
           <InputBooks onSubmit={onSubmit} name='q' />
           <Box sx={styleSelect}>
             <SelectBooks selectItems={categories} name='categories' />

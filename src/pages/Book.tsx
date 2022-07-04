@@ -6,6 +6,10 @@ import { RootObjectBookItem } from '../@types/IBook'
 
 const styleBookItem = {
   display: 'flex',
+  '@media(max-width: 900px)': {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 }
 const styleBookInfo = {
   flex: '1',
@@ -19,6 +23,13 @@ const styleAuthor = {
 const styleCategoryes = {
   color: '#5e5e5ede',
   marginTop: ' 10px',
+}
+const styleImg = {
+  width: '350px',
+  marginRight: '100px',
+  '@media(max-width: 900px)': {
+    marginRight: '0px',
+  },
 }
 const Book = () => {
   const [bookItem, setBookItem] = useState<RootObjectBookItem | null>()
@@ -39,35 +50,18 @@ const Book = () => {
     fetchBook()
   }, [])
 
-  const desc = bookItem?.volumeInfo?.description
-    ?.replaceAll('<p>', '')
-    .replaceAll('</p>', '')
-    .replaceAll('<i>', '')
-    .replaceAll('</i>', '')
-    .replaceAll('<li>', '')
-    .replaceAll('</li>', '')
-    .replaceAll('<ul>', '')
-    .replaceAll('</ul>', '')
-
-  // const img =
-  //   bookItem.volumeInfo.imageLinks.thumbnail &
-  //   'https://kbimages1-a.akamaihd.net/a9357860-a298-4ce0-b6ae-38104093abbc/353/569/90/False/harry-potter-and-the-philosopher-s-stone-3.jpg'
-
   return (
     <div>
       <Container maxWidth='xl'>
         {bookItem && (
           <Box sx={styleBookItem}>
-            <img
-              style={{ width: '350px', marginRight: ' 100px' }}
-              src={bookItem?.volumeInfo?.imageLinks?.thumbnail}
-            />
+            <img style={styleImg} src={bookItem?.volumeInfo?.imageLinks?.thumbnail} />
             <Box sx={styleBookInfo}>
               <Typography variant='h4'>{bookItem?.volumeInfo?.title}</Typography>
               <Typography sx={styleAuthor} variant='h5'>
                 {bookItem.volumeInfo.authors}
               </Typography>
-              <Typography variant='body1'>{desc}</Typography>
+              <Typography variant='body1'>{bookItem?.volumeInfo?.description}</Typography>
               <Typography sx={styleCategoryes} variant='body1'>
                 {bookItem?.volumeInfo?.categories}
               </Typography>
