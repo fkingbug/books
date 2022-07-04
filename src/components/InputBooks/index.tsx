@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEvent } from 'react'
+import React, { FC } from 'react'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useController } from 'react-hook-form'
@@ -16,9 +16,8 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
     name,
     defaultValue: '',
   })
-  const handleClickEnter = (event: any) => {
+  const handleClickEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      console.log('enter press here! ')
       onSubmit()
     }
   }
@@ -42,4 +41,3 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
   )
 }
 export default InputBooks
-// endAdornment :  <InputAdornment position='end'> <SearchIcon onClick={onSubmit} />  </InputAdornment>

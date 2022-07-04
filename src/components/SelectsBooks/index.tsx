@@ -2,14 +2,7 @@ import { FormControl, FormHelperText, MenuItem, Select } from '@mui/material'
 import React, { FC } from 'react'
 import { useController } from 'react-hook-form'
 import { SelectProps } from '../../@types/SelectProps'
-
-const styleTest = {
-  margin: '8px 0',
-  width: ' 300px',
-  '@media(max-width: 680px)': {
-    width: '100% !important',
-  },
-}
+import { styleTest } from './SelectsBooks.style'
 
 const SelectsBooks: FC<SelectProps> = ({ selectItems, name, helpername }) => {
   const {

@@ -1,7 +1,6 @@
-import { Box, Container } from '@mui/material'
 import React from 'react'
+import { Box, Container } from '@mui/material'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
 import { IForm } from '../../@types/IFrom'
 import { selectPropItem } from '../../@types/SelectProps'
 import { fetchBooks } from '../../redux/books/asyncActions'
@@ -9,8 +8,10 @@ import { switchFormData } from '../../redux/books/slice'
 import InputBooks from '../InputBooks'
 import SelectsBooks from '../SelectsBooks'
 import { formStyle, styleForm, styleSelect } from './FormBooks.style'
+import { RootState, useAppDispatch } from '../../redux/store'
+import { useSelector } from 'react-redux'
 
-const categories: selectPropItem[] = [
+const categoriesSelect: selectPropItem[] = [
   { value: 'all', label: 'all' },
   { value: 'art', label: 'art' },
   { value: 'biography', label: 'biography' },
@@ -19,25 +20,25 @@ const categories: selectPropItem[] = [
   { value: 'medical', label: 'medical' },
   { value: 'poetr', label: 'poetr' },
 ]
-const sort: selectPropItem[] = [
+const sortSelect: selectPropItem[] = [
   { value: 'relevance', label: 'relevance' },
   { value: 'newest', label: 'newest' },
 ]
 
 const FormBooks = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
+  const { categories, sortBy, q } = useSelector((state: RootState) => state.books)
   const form = useForm<IForm>({
     defaultValues: {
-      categories: 'all',
-      sortBy: 'relevance',
-      q: '',
+      categories,
+      sortBy,
+      q,
     },
   })
   const { handleSubmit } = form
   const onSubmit = () => {
     handleSubmit((data) => {
       dispatch(switchFormData(data))
-      //@ts-ignore
       dispatch(fetchBooks(data))
     })()
   }
@@ -48,8 +49,8 @@ const FormBooks = () => {
         <form style={styleForm}>
           <InputBooks onSubmit={onSubmit} name='q' />
           <Box sx={styleSelect}>
-            <SelectsBooks selectItems={categories} name='categories' helpername='Категории' />
-            <SelectsBooks selectItems={sort} name='sortBy' helpername='Сортировка' />
+            <SelectsBooks selectItems={categoriesSelect} name='categories' helpername='Категории' />
+            <SelectsBooks selectItems={sortSelect} name='sortBy' helpername='Сортировка' />
           </Box>
         </form>
       </Container>

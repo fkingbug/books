@@ -8,11 +8,10 @@ import BookItem from '../../components/BookItem'
 import { ceraclBOx, styleLoadMoreBlock, styleLoadMoreBtn } from './Main.style'
 
 const Main = () => {
-  const { booksItems, status, totalItems, categories, q, sortBy } = useSelector(
+  const { booksItems, totalItems, categories, q, sortBy } = useSelector(
     (state: RootState) => state.books
   )
   const dispatch = useAppDispatch()
-  console.log()
   const loadMore = () => {
     dispatch(
       fetchBooks({
@@ -48,8 +47,8 @@ const Main = () => {
         {booksItems.length ? (
           <>
             <Grid container spacing={2}>
-              {booksItems.map((bookItem) => (
-                <Grid item md={6} xs={12} lg={4} sm={6} xl={4}>
+              {booksItems.map((bookItem, index) => (
+                <Grid key={`${bookItem.id}__${index}`} item md={6} xs={12} lg={4} sm={6} xl={4}>
                   <BookItem {...bookItem} />
                 </Grid>
               ))}
