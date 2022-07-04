@@ -7,7 +7,8 @@ import { selectPropItem } from '../../@types/SelectProps'
 import { fetchBooks } from '../../redux/books/asyncActions'
 import { switchFormData } from '../../redux/books/slice'
 import InputBooks from '../InputBooks'
-import SelectBooks from '../SelectBooks'
+import SelectsBooks from '../SelectsBooks'
+import { formStyle, styleForm, styleSelect } from './FormBooks.style'
 
 const categories: selectPropItem[] = [
   { value: 'all', label: 'all' },
@@ -22,32 +23,6 @@ const sort: selectPropItem[] = [
   { value: 'relevance', label: 'relevance' },
   { value: 'newest', label: 'newest' },
 ]
-
-const formStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  alignContent: 'center',
-  flexDirection: 'column',
-  margin: '15px auto 50px',
-}
-
-const styleSelect = {
-  width: '100%',
-  display: 'flex',
-  justifyContent: 'space-between',
-  '@media(max-width: 680px)': {
-    flexDirection: 'column',
-  },
-}
-
-const styleForm = {
-  maxWidth: '700px',
-  width: '100%',
-  '@media(max-width: 670px)': {
-    width: '100%',
-  },
-}
 
 const FormBooks = () => {
   const dispatch = useDispatch()
@@ -73,8 +48,8 @@ const FormBooks = () => {
         <form style={styleForm}>
           <InputBooks onSubmit={onSubmit} name='q' />
           <Box sx={styleSelect}>
-            <SelectBooks selectItems={categories} name='categories' />
-            <SelectBooks selectItems={sort} name='sortBy' />
+            <SelectsBooks selectItems={categories} name='categories' helpername='Категории' />
+            <SelectsBooks selectItems={sort} name='sortBy' helpername='Сортировка' />
           </Box>
         </form>
       </Container>

@@ -1,33 +1,17 @@
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Box, Container, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { RootObjectBookItem } from '../@types/IBook'
+import {
+  styleAuthor,
+  styleBookInfo,
+  styleBookItem,
+  styleCategoryes,
+  styleImg,
+  styleMainInfo,
+} from './Book.style'
+import { RootObjectBookItem } from '../../@types/IBook'
 
-const styleBookItem = {
-  display: 'flex',
-  '@media(max-width: 900px)': {
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-}
-const styleBookInfo = {
-  flex: '1',
-}
-const styleAuthor = {
-  fontSize: '1rem',
-  fontWeight: '600',
-  color: '#5e5e5ede',
-  margin: ' 10px 0',
-}
-const styleCategoryes = {
-  color: '#5e5e5ede',
-  marginTop: ' 10px',
-}
-const styleImg = {
-  width: '328px',
-  height: '400px',
-}
 const Book = () => {
   const [bookItem, setBookItem] = useState<RootObjectBookItem | null>()
   const { id } = useParams()
@@ -52,11 +36,13 @@ const Book = () => {
       <Container maxWidth='xl'>
         {bookItem && (
           <Box sx={styleBookItem}>
-            <img style={styleImg} src={bookItem?.volumeInfo?.imageLinks?.thumbnail} />
-            <Typography variant='h4'>{bookItem?.volumeInfo?.title}</Typography>
-            <Typography sx={styleAuthor} variant='h5'>
-              {bookItem.volumeInfo.authors}
-            </Typography>
+            <Box sx={styleMainInfo}>
+              <img style={styleImg} src={bookItem?.volumeInfo?.imageLinks?.thumbnail} />
+              <Typography variant='h4'>{bookItem?.volumeInfo?.title}</Typography>
+              <Typography sx={styleAuthor} variant='h5'>
+                {bookItem.volumeInfo.authors}
+              </Typography>
+            </Box>
             <Box sx={styleBookInfo}>
               <Typography variant='body1'>{bookItem?.volumeInfo?.description}</Typography>
               <Typography sx={styleCategoryes} variant='body1'>

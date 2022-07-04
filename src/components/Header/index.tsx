@@ -1,19 +1,7 @@
-import { Box } from '@mui/material'
 import React from 'react'
+import { Box } from '@mui/material'
 import { Link } from 'react-router-dom'
-import FormBooks from './FormBooks'
-
-const styleLogo = {
-  fontSize: '2.1rem',
-  color: 'black',
-  fontWeight: '800',
-  textDecoration: 'none',
-}
-const styleHeader = {
-  display: 'flex',
-  justifyContent: 'center',
-  padding: '10px 0 0 ',
-}
+import { styleHeader, styleLogo } from './Header.style'
 
 const Header = () => {
   return (

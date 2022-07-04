@@ -1,28 +1,11 @@
 import { Box, Button, CircularProgress, Container, Grid, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import FormBooks from '../components/FormBooks'
-import { RootState, useAppDispatch } from '../redux/store'
-import { fetchBooks } from '../redux/books/asyncActions'
-import BookItem from '../components/BookItem'
-//booksItems
-
-const ceraclBOx = {
-  display: 'flex',
-  justifyContent: 'center',
-}
-
-const styleLoadMoreBlock = {
-  display: 'flex',
-  justifyContent: 'center',
-  padding: '20px 0',
-}
-const styleLoadMoreBtn = {
-  padding: '5px 25px',
-  fontSize: '18px',
-  cursor: 'pointer',
-  color: 'black',
-}
+import FormBooks from '../../components/FormBooks'
+import { RootState, useAppDispatch } from '../../redux/store'
+import { fetchBooks } from '../../redux/books/asyncActions'
+import BookItem from '../../components/BookItem'
+import { ceraclBOx, styleLoadMoreBlock, styleLoadMoreBtn } from './Main.style'
 
 const Main = () => {
   const { booksItems, status, totalItems, categories, q, sortBy } = useSelector(

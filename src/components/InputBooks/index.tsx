@@ -18,6 +18,7 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
   })
   const handleClickEnter = (event: any) => {
     if (event.key === 'Enter') {
+      console.log('enter press here! ')
       onSubmit()
     }
   }
@@ -27,10 +28,11 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
       value={value}
       onChange={onChange}
       fullWidth
+      onKeyPress={handleClickEnter}
       InputProps={{
         endAdornment: (
           <InputAdornment position='end'>
-            <IconButton onClick={onSubmit} onKeyPress={handleClickEnter}>
+            <IconButton onClick={onSubmit}>
               <SearchIcon />
             </IconButton>
           </InputAdornment>
