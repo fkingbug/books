@@ -89,8 +89,3 @@ export interface RootObject {
   totalItems: number
   items: Item[]
 }
-export enum Status {
-  LOADING = 'Loading',
-  SUCCESS = 'Success',
-  ERROR = 'Error',
-}

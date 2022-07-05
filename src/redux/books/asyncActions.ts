@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { IForm } from '../../@types/IFrom'
+import { ParamsProps } from '../../@types/ParamsProps'
 import { RootObject } from './types'
 
-export const fetchBooks = createAsyncThunk<RootObject, IForm>(
+export const fetchBooks = createAsyncThunk<RootObject, ParamsProps>(
   'books/fetchBooksStatus',
   async ({ categories, q, sortBy, itemsLength }) => {
     const categoriesNew = categories !== 'all' ? categories : ''

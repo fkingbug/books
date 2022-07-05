@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IForm } from '../../@types/IFrom'
+import { ParamsProps } from '../../@types/ParamsProps'
 import { fetchBooks } from './asyncActions'
-import { Status, Item } from './types'
+import { Item } from './types'
 
 export interface StateBook {
   booksItems: Item[]
   totalItems: number
-  status: string
   categories: string
   q: string
   sortBy: string
@@ -15,7 +14,6 @@ export interface StateBook {
 const initialState: StateBook = {
   booksItems: [],
   totalItems: 0,
-  status: Status.LOADING,
   categories: 'all',
   q: '',
   sortBy: 'relevance',
@@ -25,7 +23,7 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    switchFormData(state, action: PayloadAction<IForm>) {
+    switchFormData(state, action: PayloadAction<ParamsProps>) {
       state.categories = action.payload.categories
       state.sortBy = action.payload.sortBy
       state.q = action.payload.q
@@ -33,17 +31,12 @@ const booksSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchBooks.pending, (state) => {
-      state.status = Status.LOADING
-    })
+    builder.addCase(fetchBooks.pending, (state) => {})
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
-      state.status = Status.SUCCESS
       state.totalItems = action.payload.totalItems
       state.booksItems = [...state.booksItems, ...action.payload.items]
     })
-    builder.addCase(fetchBooks.rejected, (state) => {
-      state.status = Status.ERROR
-    })
+    builder.addCase(fetchBooks.rejected, (state) => {})
   },
 })
 export const { switchFormData } = booksSlice.actions

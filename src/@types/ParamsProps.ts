@@ -1,4 +1,4 @@
-export interface IForm {
+export interface ParamsProps {
   q: string
   categories: string
   sortBy: string

@@ -27,7 +27,7 @@ export const styleMainInfo = {
   },
 }
 
-export const styleCategoryes = {
+export const styleCategories = {
   color: '#5e5e5ede',
   marginTop: ' 10px',
 }

@@ -1,8 +1,8 @@
-export const styleimg = {
+export const styleImg = {
   boxShadow: '1px 3px 1px -1px rgb(0 0 0 / 20%)',
 }
 
-export const stylename = {
+export const styleName = {
   marginTop: '10px',
   fontSize: '25px',
   fontWeight: '500',
@@ -23,3 +23,4 @@ export const styleLink = {
   textDecoration: 'none',
   justifyContent: 'center',
 }
+export const styleCard = { maxWidth: 320 }

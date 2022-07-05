@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, useCallback } from 'react'
 import { IconButton, InputAdornment, TextField } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useController } from 'react-hook-form'
-import { IForm } from '../../@types/IFrom'
+import { ParamsProps } from '../../@types/ParamsProps'
 
 interface InputBooksProps {
-  name: keyof IForm
+  name: keyof ParamsProps
   onSubmit: () => void
 }
 
@@ -14,13 +14,15 @@ const InputBooks: FC<InputBooksProps> = ({ name, onSubmit }) => {
     field: { onChange, value },
   } = useController({
     name,
-    defaultValue: '',
   })
-  const handleClickEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      onSubmit()
-    }
-  }
+  const handleClickEnter = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        onSubmit()
+      }
+    },
+    [onSubmit]
+  )
   return (
     <TextField
       placeholder='Поиск книг'

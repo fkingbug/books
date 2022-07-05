@@ -1,4 +1,4 @@
-export const ceraclBOx = {
+export const circleBox = {
   display: 'flex',
   justifyContent: 'center',
 }
@@ -14,3 +14,11 @@ export const styleLoadMoreBtn = {
   cursor: 'pointer',
   color: 'black',
 }
+
+export const styleTotalItems = {
+  textAlign: 'center',
+  fontSize: '20px',
+  marginBottom: '30px',
+  fontWeight: '700',
+}
+export const styleProgress = { width: 'auto' }

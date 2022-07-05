@@ -1,13 +1,12 @@
-import { Control } from 'react-hook-form'
-import { IForm } from './IFrom'
+import { ParamsProps } from './ParamsProps'
 
-export interface selectPropItem {
+export interface SelectPropItem {
   value: string
   label: string
 }
 
 export interface SelectProps {
-  selectItems: selectPropItem[]
-  name: keyof IForm
-  helpername: string
+  selectItems: SelectPropItem[]
+  name: keyof ParamsProps
+  helperName: string
 }

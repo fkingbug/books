@@ -1,18 +1,24 @@
+import React, { ReactElement, useCallback, useEffect } from 'react'
 import { Box, Button, CircularProgress, Container, Grid, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import FormBooks from '../../components/FormBooks'
 import { RootState, useAppDispatch } from '../../redux/store'
 import { fetchBooks } from '../../redux/books/asyncActions'
 import BookItem from '../../components/BookItem'
-import { ceraclBOx, styleLoadMoreBlock, styleLoadMoreBtn } from './Main.style'
+import {
+  circleBox,
+  styleLoadMoreBlock,
+  styleLoadMoreBtn,
+  styleProgress,
+  styleTotalItems,
+} from './Main.style'
 
-const Main = () => {
+const Main = (): ReactElement => {
   const { booksItems, totalItems, categories, q, sortBy } = useSelector(
     (state: RootState) => state.books
   )
   const dispatch = useAppDispatch()
-  const loadMore = () => {
+  const loadMore = useCallback(() => {
     dispatch(
       fetchBooks({
         categories,
@@ -21,7 +27,7 @@ const Main = () => {
         itemsLength: booksItems.length,
       })
     )
-  }
+  }, [])
   useEffect(() => {
     if (!booksItems.length) {
       loadMore()
@@ -33,16 +39,7 @@ const Main = () => {
       <FormBooks />
       <Container maxWidth='xl'>
         {totalItems > 0 && (
-          <Typography
-            sx={{
-              textAlign: 'center',
-              fontSize: '20px',
-              marginBottom: '30px',
-              fontWeight: '700',
-            }}
-          >
-            Найдено Книг : {totalItems}
-          </Typography>
+          <Typography sx={styleTotalItems}>Найдено Книг : {totalItems}</Typography>
         )}
         {booksItems.length ? (
           <>
@@ -62,8 +59,8 @@ const Main = () => {
             )}
           </>
         ) : (
-          <Box sx={ceraclBOx}>
-            <CircularProgress sx={{ width: 'auto' }} />
+          <Box sx={circleBox}>
+            <CircularProgress sx={styleProgress} />
           </Box>
         )}
       </Container>
